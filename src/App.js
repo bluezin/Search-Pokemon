@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useSWR, { mutate } from "swr";
 import produce from "immer";
 import { readImage } from "./read-image";
@@ -10,14 +10,13 @@ function fetcher(url) {
 }
 
 function Pokemon({ name }) {
-  const { data } = useSWR(
+  const { data, error } = useSWR(
     `https://pokeapi.co/api/v2/pokemon/${name}`,
-    fetcher,
-    {
-      suspense: true,
-    }
+    fetcher
   );
-  readImage(data.sprites.front_default);
+
+  if (error) return <h1>Your pokemon was not found</h1>;
+  if (!data) return <h1>Loading...</h1>;
 
   return (
     <div>
@@ -55,7 +54,6 @@ function App() {
       );
       setName(poke);
     }, 900);
-
     return () => clearTimeout(time);
   }, [poke, name]);
 
@@ -82,13 +80,12 @@ function App() {
             Searche...
           </button>
         </form>
-        <Suspense fallback={<p>Loading...{name}</p>}>
-          {name.length === 0 ? (
-            <p>Busca un pokemon</p>
-          ) : (
+
+        {name.length === 0 ? (
+          <p>Busca un pokemon</p>
+        ) : (
             <Pokemon name={name} />
-          )}
-        </Suspense>
+        )}
 
         <button
           onClick={rename}

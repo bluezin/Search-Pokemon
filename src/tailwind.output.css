@@ -22744,6 +22744,18 @@ video {
   animation: bounce 1s infinite;
 }
 
+.imagen {
+  margin: auto;
+}
+
+@media (max-width: 400px) {
+  .div {
+    width: 100%;
+    margin: auto;
+    padding: 2px;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
