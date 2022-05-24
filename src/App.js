@@ -36,7 +36,7 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setName(poke);
+    setName(poke.toLowerCase());
   }
 
   function handleChange(event) {
@@ -61,7 +61,7 @@ function App() {
     mutate(
       `https://pokeapi.co/api/v2/pokemon/${name}`,
       produce((draft) => {
-        draft.name = "Yadira";
+        draft.name = ":)";
       }),
       false
     );
@@ -81,11 +81,7 @@ function App() {
           </button>
         </form>
 
-        {name.length === 0 ? (
-          <p>Busca un pokemon</p>
-        ) : (
-            <Pokemon name={name} />
-        )}
+        {name.length === 0 ? <p>Busca un pokemon</p> : <Pokemon name={name} />}
 
         <button
           onClick={rename}
