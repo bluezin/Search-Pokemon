@@ -61,7 +61,7 @@ function App() {
     mutate(
       `https://pokeapi.co/api/v2/pokemon/${name}`,
       produce((draft) => {
-        draft.name = ":)";
+        draft.name = "My favorite pokemon";
       }),
       false
     );
