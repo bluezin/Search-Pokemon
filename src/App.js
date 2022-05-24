@@ -55,7 +55,7 @@ function App() {
       setName(poke);
     }, 900);
     return () => clearTimeout(time);
-  }, [poke, name]);
+  }, [name]);
 
   function rename() {
     mutate(
