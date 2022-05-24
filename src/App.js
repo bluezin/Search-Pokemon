@@ -36,11 +36,11 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setName(poke.toLowerCase());
+    setName(poke);
   }
 
   function handleChange(event) {
-    setPoke(event.target.value);
+    setPoke(event.target.value.toLowerCase());
   }
 
   useEffect(() => {
